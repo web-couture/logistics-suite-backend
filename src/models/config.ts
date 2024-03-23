@@ -16,6 +16,8 @@ class Config extends Model<
   declare id: CreationOptional<string>;
   declare vat: number;
   declare insuranceFactor: number;
+  declare ecommerceFactor: number;
+  declare expressMultiplication: number;
   declare distanceFactor: number;
   declare distanceThreshold: number;
   declare vendorId?: ForeignKey<Vendor["id"]>;
@@ -36,6 +38,14 @@ Config.init(
       defaultValue: 0.075,
     },
     insuranceFactor: {
+      type: DataTypes.FLOAT,
+      defaultValue: 0,
+    },
+    ecommerceFactor: {
+      type: DataTypes.FLOAT,
+      defaultValue: 0,
+    },
+    expressMultiplication: {
       type: DataTypes.FLOAT,
       defaultValue: 0,
     },
