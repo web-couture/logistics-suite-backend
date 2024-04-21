@@ -3,13 +3,15 @@ import {
   Column,
   Entity,
   JoinColumn,
+  OneToMany,
   OneToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { Address } from './address.entity';
+import { Order } from './order.entity';
 
 @Entity()
-export class customer extends BaseEntity {
+export class Customer extends BaseEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
   @Column()
@@ -25,4 +27,6 @@ export class customer extends BaseEntity {
   @OneToOne(() => Address)
   @JoinColumn()
   address: Address;
+  @OneToMany(() => Order, (order) => order.sender)
+  orders: Order[];
 }

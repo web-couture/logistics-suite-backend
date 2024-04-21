@@ -29,6 +29,9 @@ export class Station extends BaseEntity {
   @OneToMany(() => TripPersonnel, (personnel) => personnel.currentStation)
   tripPersonnel: TripPersonnel[];
   station: Station | null;
+  @Column({
+    type: 'simple-array',
+  })
   phoneNumbers: string[];
   createdAt: Date;
   updatedAt: Date;
