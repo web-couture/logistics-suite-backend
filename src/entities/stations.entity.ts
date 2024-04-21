@@ -8,8 +8,8 @@ import {
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { Address } from './address.entity';
-import { Staff } from './staff.entity';
-import { OfficePersonel } from './office-staff.entity';
+import { OfficePersonnel } from './office-staff.entity';
+import { TripPersonnel } from './trip-staff.entity';
 
 @Entity()
 export class Station extends BaseEntity {
@@ -24,12 +24,10 @@ export class Station extends BaseEntity {
   })
   @JoinColumn()
   address: Address;
-  @OneToMany(() => OfficePersonel, (personel) => personel.station)
-  officePersonel: OfficePersonel[];
-  @ManyToOne(() => Station, (station) => station.staff, {
-    eager: true,
-    nullable: true,
-  })
+  @OneToMany(() => OfficePersonnel, (personel) => personel.station)
+  officePersonnel: OfficePersonnel[];
+  @OneToMany(() => TripPersonnel, (personnel) => personnel.currentStation)
+  tripPersonnel: TripPersonnel[];
   station: Station | null;
   phoneNumbers: string[];
   createdAt: Date;

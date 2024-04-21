@@ -4,16 +4,14 @@ import {
   CreateDateColumn,
   Entity,
   JoinColumn,
-  ManyToOne,
   OneToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { Station } from './stations.entity';
 import { Address } from './address.entity';
 import { User } from './users.entity';
-import { OfficePersonel } from './office-staff.entity';
-import { TripPersonel } from './trip-staff.entity';
+import { OfficePersonnel } from './office-staff.entity';
+import { TripPersonnel } from './trip-staff.entity';
 
 export enum StaffRole {
   DIRECTOR = 'director',
@@ -51,17 +49,17 @@ export class Staff extends BaseEntity {
   })
   role: StaffRole;
 
-  @OneToOne(() => OfficePersonel, (personel) => personel.staffInfo, {
+  @OneToOne(() => OfficePersonnel, (personnel) => personnel.staffInfo, {
     cascade: true,
     nullable: true,
   })
-  officePersonelInfo: OfficePersonel | null;
+  officePersonnelInfo: OfficePersonnel | null;
 
-  @OneToOne(() => TripPersonel, (personel) => personel.staffInfo, {
+  @OneToOne(() => TripPersonnel, (personel) => personel.staffInfo, {
     cascade: true,
     nullable: true,
   })
-  tripPersonelInfo: TripPersonel | null;
+  tripPersonnelInfo: TripPersonnel | null;
 
   @CreateDateColumn()
   createdAt: Date;

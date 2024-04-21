@@ -10,13 +10,13 @@ import { Staff } from './staff.entity';
 import { Station } from './stations.entity';
 
 @Entity()
-export class OfficePersonel extends BaseEntity {
+export class OfficePersonnel extends BaseEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
   @OneToOne(() => Staff, { cascade: true })
   @JoinColumn()
   staffInfo: Staff;
-  @ManyToOne(() => Station, (station) => station.officePersonel, {
+  @ManyToOne(() => Station, (station) => station.officePersonnel, {
     eager: true,
     nullable: true,
   })
