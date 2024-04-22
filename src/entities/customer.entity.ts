@@ -10,6 +10,11 @@ import {
 import { Address } from './address.entity';
 import { Order } from './order.entity';
 
+export enum CustomerType {
+  INDIVIDUAL = 'individual',
+  CORPORATE = 'corporate'
+}
+
 @Entity()
 export class Customer extends BaseEntity {
   @PrimaryGeneratedColumn('uuid')
@@ -27,6 +32,8 @@ export class Customer extends BaseEntity {
   @OneToOne(() => Address)
   @JoinColumn()
   address: Address;
+  @Column({type: "enum", enum: CustomerType})
+  customerType: CustomerType
   @OneToMany(() => Order, (order) => order.sender)
   orders: Order[];
 }

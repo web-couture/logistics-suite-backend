@@ -27,4 +27,20 @@ export class Order extends BaseEntity {
   destinationStation: Station;
   @ManyToOne(() => Station, (station) => station.passingOrders)
   intermediateStation: Station;
+  @Column({type: "boolean", default: false})
+  toBeTranshipped: boolean
+  @Column({type: 'simple-json'})
+  item: {
+    quantity: number
+    type: string
+    category: string
+    description: string
+  }
+  @Column({type: 'simple-json'})
+  additionalCharges: {
+    [key: string]: string
+  }
+  @Column({type: 'si'})
+  vat: number
+  
 }
