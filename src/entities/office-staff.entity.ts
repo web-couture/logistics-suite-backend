@@ -3,11 +3,13 @@ import {
   Entity,
   JoinColumn,
   ManyToOne,
+  OneToMany,
   OneToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { Staff } from './staff.entity';
 import { Station } from './stations.entity';
+import { Order } from './order.entity';
 
 @Entity()
 export class OfficePersonnel extends BaseEntity {
@@ -20,5 +22,7 @@ export class OfficePersonnel extends BaseEntity {
     eager: true,
     nullable: true,
   })
+  @OneToMany(() => Order, (order) => order.processedBy)
+  orders: Order[];
   station: Station | null;
 }

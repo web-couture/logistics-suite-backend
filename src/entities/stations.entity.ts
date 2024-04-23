@@ -30,12 +30,12 @@ export class Station extends BaseEntity {
   @OneToMany(() => TripPersonnel, (personnel) => personnel.currentStation)
   tripPersonnel: TripPersonnel[];
   station: Station | null;
-  @OneToMany(() => Order, order => order.originStation)
-  generatedOrders: Order[]
-  @OneToMany(() => Order, order => order.originStation)
-  incomingOrders: Order[]
-  @OneToMany(() => Order, order => order.originStation)
-  passingOrders: Order[]
+  @OneToMany(() => Order, (order) => order.originStation)
+  generatedOrders: Order[];
+  @OneToMany(() => Order, (order) => order.originStation)
+  incomingOrders: Order[];
+  @OneToMany(() => Order, (order) => order.originStation)
+  passingOrders: Order[];
   @Column({
     type: 'simple-array',
   })
