@@ -1,16 +1,19 @@
 import {
   BaseEntity,
   Column,
+  CreateDateColumn,
   Entity,
   JoinColumn,
   OneToMany,
   OneToOne,
   PrimaryGeneratedColumn,
+  UpdateDateColumn,
 } from 'typeorm';
 import { Address } from './address.entity';
 import { OfficePersonnel } from './office-staff.entity';
-import { TripPersonnel } from './trip-staff.entity';
 import { Order } from './order.entity';
+import { Driver } from './drivers.entity copy';
+import { VehicleAssistant } from './vehicle-assistant.entity';
 
 @Entity()
 export class Station extends BaseEntity {
@@ -25,21 +28,28 @@ export class Station extends BaseEntity {
   })
   @JoinColumn()
   address: Address;
+  @Column({ type: 'boolean', default: false })
+  isRegional: boolean;
   @OneToMany(() => OfficePersonnel, (personel) => personel.station)
   officePersonnel: OfficePersonnel[];
-  @OneToMany(() => TripPersonnel, (personnel) => personnel.currentStation)
-  tripPersonnel: TripPersonnel[];
-  station: Station | null;
+  @OneToMany(() => Driver, (driver) => driver.currentStation)
+  drivers: Driver[];
+  @OneToMany(
+    () => VehicleAssistant,
+    (vehicleAssistant) => vehicleAssistant.currentStation,
+  )
+  vehicleAssistants: VehicleAssistant[];
   @OneToMany(() => Order, (order) => order.originStation)
   generatedOrders: Order[];
   @OneToMany(() => Order, (order) => order.originStation)
   incomingOrders: Order[];
-  @OneToMany(() => Order, (order) => order.originStation)
-  passingOrders: Order[];
   @Column({
     type: 'simple-array',
   })
+  @Column({ type: 'simple-array' })
   phoneNumbers: string[];
+  @CreateDateColumn()
   createdAt: Date;
+  @UpdateDateColumn()
   updatedAt: Date;
 }

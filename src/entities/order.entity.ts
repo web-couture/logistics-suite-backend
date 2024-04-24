@@ -13,6 +13,7 @@ import { Station } from './stations.entity';
 import { Charge } from './charges.entity';
 import { OfficePersonnel } from './office-staff.entity';
 import { OrderPayment } from './order-payments.entity';
+import { Shipment } from './Shipmentment.entity';
 
 export enum OrderCoverage {
   LOCAL = 'local',
@@ -72,7 +73,8 @@ export class Order extends BaseEntity {
 
   @ManyToOne(() => OfficePersonnel, (personnel) => personnel.orders)
   processedBy: OfficePersonnel;
-
+  @ManyToOne(() => Shipment, (shipment) => shipment.orders, { nullable: true })
+  shipment: Shipment | null;
   @CreateDateColumn()
   createdAt: Date;
 

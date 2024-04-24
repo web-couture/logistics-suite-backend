@@ -11,7 +11,7 @@ import {
 import { Address } from './address.entity';
 import { User } from './users.entity';
 import { OfficePersonnel } from './office-staff.entity';
-import { TripPersonnel } from './trip-staff.entity';
+import { TripPersonnel } from './vehicle-assistant.entity';
 
 export enum StaffRole {
   DIRECTOR = 'director',
