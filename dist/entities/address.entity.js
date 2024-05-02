@@ -12,10 +12,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Address = void 0;
 const typeorm_1 = require("typeorm");
 const states_entity_1 = require("./states.entity");
-const cities_entity_1 = require("./cities.entity");
+const lgas_entity_1 = require("./lgas.entity");
 let Address = class Address extends typeorm_1.BaseEntity {
     get fullAddress() {
-        return `${this.state?.name} ${this.city?.name || ''} ${this.streetAddress}`;
+        return `${this.state?.name} ${this.lga?.name || ''} ${this.streetAddress}`;
     }
 };
 exports.Address = Address;
@@ -28,12 +28,12 @@ __decorate([
     __metadata("design:type", String)
 ], Address.prototype, "streetAddress", void 0);
 __decorate([
-    (0, typeorm_1.ManyToOne)(() => cities_entity_1.City, (city) => city.addresses, {
+    (0, typeorm_1.ManyToOne)(() => lgas_entity_1.Lga, (lga) => lga.addresses, {
         nullable: true,
         eager: true,
     }),
-    __metadata("design:type", cities_entity_1.City)
-], Address.prototype, "city", void 0);
+    __metadata("design:type", lgas_entity_1.Lga)
+], Address.prototype, "lga", void 0);
 __decorate([
     (0, typeorm_1.ManyToOne)(() => states_entity_1.State, (state) => state.addresses, { eager: true }),
     __metadata("design:type", states_entity_1.State)
@@ -47,7 +47,7 @@ __decorate([
         nullable: true,
     }),
     __metadata("design:type", Number)
-], Address.prototype, "cityId", void 0);
+], Address.prototype, "lgaId", void 0);
 __decorate([
     (0, typeorm_1.CreateDateColumn)(),
     __metadata("design:type", Date)

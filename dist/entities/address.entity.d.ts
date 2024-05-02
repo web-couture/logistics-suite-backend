@@ -1,13 +1,13 @@
 import { BaseEntity } from 'typeorm';
 import { State } from './states.entity';
-import { City } from './cities.entity';
+import { Lga } from './lgas.entity';
 export declare class Address extends BaseEntity {
     id: string;
     streetAddress: string;
-    city: City | null;
+    lga: Lga | null;
     state: State;
     stateId: number;
-    cityId: number | null;
+    lgaId: number | null;
     createdAt: Date;
     updatedAt: Date;
     get fullAddress(): string;

@@ -1,9 +1,21 @@
-import { Controller, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Post,
+  UsePipes,
+  ValidationPipe,
+} from '@nestjs/common';
+import { StaffRegDTO } from './dto/staff-registration-dtos';
+import { AuthService } from './auth.service';
 
 @Controller('auth')
 export class AuthController {
-  @Post('sign-in')
-  signIn() {
-    return 'sign in route';
+  constructor(private authService: AuthService) {}
+  @Post('staff-registration')
+  @UsePipes(ValidationPipe)
+  signup(@Body() staffData: StaffRegDTO) {
+    console.log(staffData);
+
+    return this.authService.registerStaff(staffData);
   }
 }

@@ -11,7 +11,7 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 import { Vehicle } from './vehicles.entity';
-import { Driver } from './drivers.entity copy';
+import { Driver } from './drivers.entity';
 import { VehicleAssistant } from './vehicle-assistant.entity';
 import { Shipment } from './Shipmentment.entity';
 import { Route } from './routes.entity';

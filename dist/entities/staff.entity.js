@@ -14,7 +14,8 @@ const typeorm_1 = require("typeorm");
 const address_entity_1 = require("./address.entity");
 const users_entity_1 = require("./users.entity");
 const office_staff_entity_1 = require("./office-staff.entity");
-const trip_staff_entity_1 = require("./trip-staff.entity");
+const vehicle_assistant_entity_1 = require("./vehicle-assistant.entity");
+const drivers_entity_1 = require("./drivers.entity");
 var StaffRole;
 (function (StaffRole) {
     StaffRole["DIRECTOR"] = "director";
@@ -59,10 +60,6 @@ __decorate([
     __metadata("design:type", address_entity_1.Address)
 ], Staff.prototype, "address", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ nullable: true }),
-    __metadata("design:type", String)
-], Staff.prototype, "stationId", void 0);
-__decorate([
     (0, typeorm_1.Column)({
         type: 'enum',
         enum: StaffRole,
@@ -71,18 +68,22 @@ __decorate([
 ], Staff.prototype, "role", void 0);
 __decorate([
     (0, typeorm_1.OneToOne)(() => office_staff_entity_1.OfficePersonnel, (personnel) => personnel.staffInfo, {
-        cascade: true,
         nullable: true,
     }),
     __metadata("design:type", office_staff_entity_1.OfficePersonnel)
 ], Staff.prototype, "officePersonnelInfo", void 0);
 __decorate([
-    (0, typeorm_1.OneToOne)(() => trip_staff_entity_1.TripPersonnel, (personel) => personel.staffInfo, {
-        cascade: true,
+    (0, typeorm_1.OneToOne)(() => vehicle_assistant_entity_1.VehicleAssistant, (personel) => personel.staffInfo, {
         nullable: true,
     }),
-    __metadata("design:type", trip_staff_entity_1.TripPersonnel)
-], Staff.prototype, "tripPersonnelInfo", void 0);
+    __metadata("design:type", vehicle_assistant_entity_1.VehicleAssistant)
+], Staff.prototype, "vehicleAssistantInfo", void 0);
+__decorate([
+    (0, typeorm_1.OneToOne)(() => drivers_entity_1.Driver, (personel) => personel.staffInfo, {
+        nullable: true,
+    }),
+    __metadata("design:type", drivers_entity_1.Driver)
+], Staff.prototype, "driverInfo", void 0);
 __decorate([
     (0, typeorm_1.CreateDateColumn)(),
     __metadata("design:type", Date)

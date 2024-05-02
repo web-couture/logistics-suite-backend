@@ -13,6 +13,7 @@ exports.OfficePersonnel = void 0;
 const typeorm_1 = require("typeorm");
 const staff_entity_1 = require("./staff.entity");
 const stations_entity_1 = require("./stations.entity");
+const order_entity_1 = require("./order.entity");
 let OfficePersonnel = class OfficePersonnel extends typeorm_1.BaseEntity {
 };
 exports.OfficePersonnel = OfficePersonnel;
@@ -32,6 +33,14 @@ __decorate([
     }),
     __metadata("design:type", stations_entity_1.Station)
 ], OfficePersonnel.prototype, "station", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
+], OfficePersonnel.prototype, "stationId", void 0);
+__decorate([
+    (0, typeorm_1.OneToMany)(() => order_entity_1.Order, (order) => order.processedBy),
+    __metadata("design:type", Array)
+], OfficePersonnel.prototype, "orders", void 0);
 exports.OfficePersonnel = OfficePersonnel = __decorate([
     (0, typeorm_1.Entity)()
 ], OfficePersonnel);

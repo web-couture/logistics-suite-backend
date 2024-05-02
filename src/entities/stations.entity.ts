@@ -12,7 +12,7 @@ import {
 import { Address } from './address.entity';
 import { OfficePersonnel } from './office-staff.entity';
 import { Order } from './order.entity';
-import { Driver } from './drivers.entity copy';
+import { Driver } from './drivers.entity';
 import { VehicleAssistant } from './vehicle-assistant.entity';
 
 @Entity()
@@ -43,9 +43,6 @@ export class Station extends BaseEntity {
   generatedOrders: Order[];
   @OneToMany(() => Order, (order) => order.originStation)
   incomingOrders: Order[];
-  @Column({
-    type: 'simple-array',
-  })
   @Column({ type: 'simple-array' })
   phoneNumbers: string[];
   @CreateDateColumn()

@@ -34,7 +34,7 @@ export enum DeliveryCategory {
 export class Order extends BaseEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
-  @Column({ unsigned: true })
+  @Column()
   trackingNumber: string;
   @Column()
   customerId: string;

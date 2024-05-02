@@ -1,5 +1,6 @@
 import {
   BaseEntity,
+  Column,
   Entity,
   JoinColumn,
   ManyToOne,
@@ -22,7 +23,9 @@ export class OfficePersonnel extends BaseEntity {
     eager: true,
     nullable: true,
   })
+  station: Station | null;
+  @Column()
+  stationId: string;
   @OneToMany(() => Order, (order) => order.processedBy)
   orders: Order[];
-  station: Station | null;
 }

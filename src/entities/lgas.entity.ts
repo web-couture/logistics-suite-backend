@@ -11,25 +11,16 @@ import { State } from './states.entity';
 import { Address } from './address.entity';
 
 @Entity()
-@Unique('city_in_state', ['countryId', 'name'])
-@Unique('location', ['latitude', 'longitude'])
-export class City extends BaseEntity {
+@Unique('lga_in_state', ['stateId', 'name'])
+export class Lga extends BaseEntity {
   @PrimaryGeneratedColumn('increment')
   id: number;
   @Column()
   name: string;
-  @Column({
-    type: 'double',
-  })
-  latitude: number;
-  @Column({
-    type: 'double',
-  })
-  longitude: number;
-  @ManyToOne(() => State, (state) => state.cities, { eager: false })
+  @ManyToOne(() => State, (state) => state.lgas, { eager: false })
   state: State;
   @Column()
   stateId: number;
-  @OneToMany(() => Address, (address) => address.city)
+  @OneToMany(() => Address, (address) => address.lga)
   addresses: Address[];
 }

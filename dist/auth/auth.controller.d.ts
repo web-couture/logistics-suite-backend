@@ -1,3 +1,7 @@
+import { StaffRegDTO } from './dto/staff-registration-dtos';
+import { AuthService } from './auth.service';
 export declare class AuthController {
-    signIn(): string;
+    private authService;
+    constructor(authService: AuthService);
+    signup(staffData: StaffRegDTO): StaffRegDTO;
 }

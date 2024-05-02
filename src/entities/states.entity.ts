@@ -2,17 +2,14 @@ import {
   BaseEntity,
   Column,
   Entity,
-  ManyToOne,
   OneToMany,
   PrimaryGeneratedColumn,
   Unique,
 } from 'typeorm';
-import { Country } from './countries.entity';
-import { City } from './cities.entity';
+import { Lga } from './lgas.entity';
 import { Address } from './address.entity';
 
 @Entity()
-@Unique('state_in_country', ['countryId', 'name'])
 @Unique('location', ['latitude', 'longitude'])
 export class State extends BaseEntity {
   @PrimaryGeneratedColumn('increment')
@@ -24,17 +21,18 @@ export class State extends BaseEntity {
   @Column({
     type: 'double',
   })
+  @Column()
+  capitalCode: string;
+  @Column({
+    type: 'double',
+  })
   latitude: number;
   @Column({
     type: 'double',
   })
   longitude: number;
-  @ManyToOne(() => Country, (country) => country.states, { eager: false })
-  country: Country;
-  @Column()
-  countryId: number;
-  @OneToMany(() => City, (city) => city.state)
-  cities: City[];
+  @OneToMany(() => Lga, (lga) => lga.state, { cascade: true })
+  lgas: Lga[];
   @OneToMany(() => Address, (address) => address.state)
   addresses: Address[];
 }

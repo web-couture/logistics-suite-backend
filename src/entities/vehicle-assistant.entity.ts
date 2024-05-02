@@ -1,5 +1,6 @@
 import {
   BaseEntity,
+  Column,
   Entity,
   JoinColumn,
   ManyToOne,
@@ -19,8 +20,12 @@ export class VehicleAssistant extends BaseEntity {
   staffInfo: Staff;
   @ManyToOne(() => Station, (station) => station.vehicleAssistants)
   currentStation: Station;
+  @Column()
+  currentStationId: string;
   @ManyToOne(() => Route, (route) => route.vehicleAssistants, {
     nullable: true,
   })
   registeredRoute: Route;
+  @Column()
+  registeredRouteId: string;
 }

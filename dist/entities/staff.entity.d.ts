@@ -2,7 +2,8 @@ import { BaseEntity } from 'typeorm';
 import { Address } from './address.entity';
 import { User } from './users.entity';
 import { OfficePersonnel } from './office-staff.entity';
-import { TripPersonnel } from './trip-staff.entity';
+import { VehicleAssistant } from './vehicle-assistant.entity';
+import { Driver } from './drivers.entity';
 export declare enum StaffRole {
     DIRECTOR = "director",
     HR = "hr",
@@ -18,10 +19,10 @@ export declare class Staff extends BaseEntity {
     lastname: string;
     phoneNumber: string;
     address: Address;
-    stationId: string;
     role: StaffRole;
     officePersonnelInfo: OfficePersonnel | null;
-    tripPersonnelInfo: TripPersonnel | null;
+    vehicleAssistantInfo: VehicleAssistant | null;
+    driverInfo: Driver | null;
     createdAt: Date;
     updatedAt: Date;
     get fullName(): string;

@@ -11,7 +11,8 @@ import {
 import { Address } from './address.entity';
 import { User } from './users.entity';
 import { OfficePersonnel } from './office-staff.entity';
-import { TripPersonnel } from './vehicle-assistant.entity';
+import { VehicleAssistant } from './vehicle-assistant.entity';
+import { Driver } from './drivers.entity';
 
 export enum StaffRole {
   DIRECTOR = 'director',
@@ -41,8 +42,6 @@ export class Staff extends BaseEntity {
   })
   @JoinColumn()
   address: Address;
-  @Column({ nullable: true })
-  stationId: string;
   @Column({
     type: 'enum',
     enum: StaffRole,
@@ -50,16 +49,18 @@ export class Staff extends BaseEntity {
   role: StaffRole;
 
   @OneToOne(() => OfficePersonnel, (personnel) => personnel.staffInfo, {
-    cascade: true,
     nullable: true,
   })
   officePersonnelInfo: OfficePersonnel | null;
 
-  @OneToOne(() => TripPersonnel, (personel) => personel.staffInfo, {
-    cascade: true,
+  @OneToOne(() => VehicleAssistant, (personel) => personel.staffInfo, {
     nullable: true,
   })
-  tripPersonnelInfo: TripPersonnel | null;
+  vehicleAssistantInfo: VehicleAssistant | null;
+  @OneToOne(() => Driver, (personel) => personel.staffInfo, {
+    nullable: true,
+  })
+  driverInfo: Driver | null;
 
   @CreateDateColumn()
   createdAt: Date;

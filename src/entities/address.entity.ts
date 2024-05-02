@@ -8,7 +8,7 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 import { State } from './states.entity';
-import { City } from './cities.entity';
+import { Lga } from './lgas.entity';
 
 @Entity()
 export class Address extends BaseEntity {
@@ -16,11 +16,11 @@ export class Address extends BaseEntity {
   id: string;
   @Column()
   streetAddress: string;
-  @ManyToOne(() => City, (city) => city.addresses, {
+  @ManyToOne(() => Lga, (lga) => lga.addresses, {
     nullable: true,
     eager: true,
   })
-  city: City | null;
+  lga: Lga | null;
   @ManyToOne(() => State, (state) => state.addresses, { eager: true })
   state: State;
   @Column()
@@ -28,12 +28,12 @@ export class Address extends BaseEntity {
   @Column({
     nullable: true,
   })
-  cityId: number | null;
+  lgaId: number | null;
   @CreateDateColumn()
   createdAt: Date;
   @UpdateDateColumn()
   updatedAt: Date;
   get fullAddress(): string {
-    return `${this.state?.name} ${this.city?.name || ''} ${this.streetAddress}`;
+    return `${this.state?.name} ${this.lga?.name || ''} ${this.streetAddress}`;
   }
 }

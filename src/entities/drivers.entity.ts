@@ -1,5 +1,6 @@
 import {
   BaseEntity,
+  Column,
   Entity,
   JoinColumn,
   ManyToOne,
@@ -17,8 +18,14 @@ export class Driver extends BaseEntity {
   @OneToOne(() => Staff, { cascade: true })
   @JoinColumn()
   staffInfo: Staff;
-  @ManyToOne(() => Station, (station) => station.drivers)
+  @ManyToOne(() => Station, (station) => station.vehicleAssistants)
   currentStation: Station;
-  @ManyToOne(() => Route, (route) => route.drivers, { nullable: true })
+  @Column()
+  currentStationId: string;
+  @ManyToOne(() => Route, (route) => route.vehicleAssistants, {
+    nullable: true,
+  })
   registeredRoute: Route;
+  @Column()
+  registeredRouteId: string;
 }
